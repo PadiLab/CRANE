@@ -117,7 +117,7 @@ crane.bipartite= function(df,alpha=0.1,beta=0,getAdj=F,randomStart=F){
         temp=(temp/sum(temp))*tfD[(i-1)]
         k=k+1
       }
-      #Final Update Last Edges
+      #Update Final Edges
       rlt_A[(i-1),]=temp
       current_degree=current_degree+temp
       y=goal_degree-current_degree
