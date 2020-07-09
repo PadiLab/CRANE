@@ -4,7 +4,7 @@
 # CRANE v1.0.0
 
 Constrained Random Alteration of Network Edges (CRANE), a computational
-method for sampling networks with fixed node strengths,
+method for sampling networks with fixed node strengths.
 
 ## Installation
 
@@ -12,6 +12,7 @@ You can install the released version of CRANE from
 [GitHub](https://github.com/PadiLab/CRANE) with:
 
 ``` r
+library(devtools)
 install_github("PadiLab/CRANE")
 ```
 
@@ -48,11 +49,11 @@ newElist=crane.bipartite(ang,alpha=0.3)
 #> [1] "Sorting Nodes"
 
 head(newElist)
-#>     from   to      weight
-#> 1    AHR A1CF -1.46548313
-#> 2     AR A1CF -1.46621086
-#> 3 ARID3A A1CF  3.30632912
-#> 4   ARNT A1CF  2.43699996
-#> 5  BRCA1 A1CF  3.57989571
-#> 6  CREB1 A1CF -0.06841034
+#>     from   to     weight
+#> 1    AHR A1CF -1.4258944
+#> 2     AR A1CF -1.0521025
+#> 3 ARID3A A1CF  3.1992711
+#> 4   ARNT A1CF  1.8849933
+#> 5  BRCA1 A1CF  3.6021064
+#> 6  CREB1 A1CF  0.3113564
 ```

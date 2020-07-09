@@ -22,6 +22,7 @@ Constrained Random Alteration of Network Edges (CRANE), a computational method f
 You can install the released version of CRANE from [GitHub](https://github.com/PadiLab/CRANE) with:
 
 ``` r
+library(devtools)
 install_github("PadiLab/CRANE")
 ```
 
