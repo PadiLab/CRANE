@@ -7,7 +7,6 @@
 #' @export
 #'
 crane.unipartite = function(A,alpha=0.1){
-  print(paste("NORMAL PERTURBATION"))
   print(paste("Applying Alpha =",alpha))
 
   rown=nrow(A)

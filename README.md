@@ -3,8 +3,9 @@
 
 # CRANE v1.0.0
 
-Constrained Random Alteration of Network Edges (CRANE), a computational
-method for sampling networks with fixed node strengths.
+Constrained Random Alteration of Network Edges (CRANE) is a
+computational method for sampling networks with fixed node strengths.
+This package also include CRANE integraction with ALPACA.
 
 ## Installation
 
@@ -42,7 +43,6 @@ head(ang)
 # Running CRANE for bipartite network
 newElist=crane.bipartite(ang,alpha=0.3)
 #> [1] "Converting Edgelist to Adj Matrix"
-#> [1] "NORMAL PERTURBATION"
 #> [1] "Applying Alpha = 0.3"
 #> [1] "Constructing Iteratuvely Perturbed Network"
 #> [1] 100
@@ -50,10 +50,10 @@ newElist=crane.bipartite(ang,alpha=0.3)
 
 head(newElist)
 #>     from   to     weight
-#> 1    AHR A1CF -1.4258944
-#> 2     AR A1CF -1.0521025
-#> 3 ARID3A A1CF  3.1992711
-#> 4   ARNT A1CF  1.8849933
-#> 5  BRCA1 A1CF  3.6021064
-#> 6  CREB1 A1CF  0.3113564
+#> 1    AHR A1CF -0.9698311
+#> 2     AR A1CF -1.5715271
+#> 3 ARID3A A1CF  4.6088972
+#> 4   ARNT A1CF  2.0491064
+#> 5  BRCA1 A1CF  4.2443432
+#> 6  CREB1 A1CF -1.2039811
 ```

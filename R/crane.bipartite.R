@@ -32,7 +32,6 @@ crane.bipartite= function(df,alpha=0.1,beta=0,getAdj=F,randomStart=F){
     A=df
   }
 
-  print(paste("NORMAL PERTURBATION"))
   print(paste("Applying Alpha =",alpha))
   rown=nrow(A)
   coln=ncol(A)
