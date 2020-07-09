@@ -31,11 +31,13 @@ install_github("PadiLab/CRANE")
 Coming soon...
 
 
-## Example
+## Examples
 
 We have included network edge list from angiogenic ovarian cancer (ang) and non-angiogenic ovarian cancer (nonAng). The following are some example use:
 
-```{r example}
+1. CRANE for network perturbation
+
+```{r example1}
 library(CRANE)
 head(ang)
 
@@ -46,7 +48,26 @@ head(newElist)
 
 ```
 
+2. CRANE integration with ALPACA
+```{r example2}
+library(ALPACA)
+library(CRANE)
 
+# Create Input Matrix nonAng as the baseline.
+input=cbind(nonAng,ang[,3])
+
+# Run ALPACA
+alp=alpaca(input,NULL,verbose = F)
+
+# Apply Crane
+alpListObject=alpaca.crane(input, alp, isParallel = T)
+
+# TF Results
+head(alpListObject$TF)
+
+# Gene Results
+head(alpListObject$Gene)
+```
 
 ```{r pressure, echo = FALSE}
 
