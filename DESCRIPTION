@@ -1,12 +1,23 @@
 Package: CRANE
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
+Title: Randomly perturbing networks with fixed strength
+Version: 1.0.0
+Author: James Lim
+Maintainer: Megha Padi <mpadi@arizona.edu>
+Description: Constrained Random Alteration of Network Edges (CRANE) 
+  is a computational method for sampling networks with fixed node strengths.
+License: MIT
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 7.1.1
+Imports: 
+    doParallel,
+    foreach,
+    ALPACA,
+    condor,
+    parallel,
+    survival,
+    igraph
+Depends: 
+    R (>= 2.10)
+
