@@ -28,8 +28,10 @@ install_github("PadiLab/CRANE")
 
 ## Publication
 
-Coming soon...
-
+**Generating Ensembles of Gene Regulatory Networks to Assess Robustness of Disease Modules**  
+James T Lim, Chen Chen, Adam D Grant, Megha Padi  
+bioRxiv 2020.07.12.198747; doi: https://doi.org/10.1101/2020.07.12.198747  
+url: https://www.biorxiv.org/content/10.1101/2020.07.12.198747v1  
 
 ## Examples
 

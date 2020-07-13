@@ -19,7 +19,12 @@ install_github("PadiLab/CRANE")
 
 ## Publication
 
-Coming soon…
+**Generating Ensembles of Gene Regulatory Networks to Assess Robustness
+of Disease Modules**  
+James T Lim, Chen Chen, Adam D Grant, Megha Padi  
+bioRxiv 2020.07.12.198747; doi:
+<https://doi.org/10.1101/2020.07.12.198747>  
+url: <https://www.biorxiv.org/content/10.1101/2020.07.12.198747v1>
 
 ## Examples
 
@@ -33,7 +38,8 @@ example use:
 
 ``` r
 library(CRANE)
-
+#> 
+#> 
 head(ang)
 #>       TF Gene    weight
 #> 1    AHR A1CF -1.090067
@@ -53,12 +59,12 @@ newElist=crane.bipartite(ang,alpha=0.3)
 
 head(newElist)
 #>     from   to     weight
-#> 1    AHR A1CF -0.4863448
-#> 2     AR A1CF -2.3563477
-#> 3 ARID3A A1CF  2.9850825
-#> 4   ARNT A1CF  2.3343717
-#> 5  BRCA1 A1CF  2.9642476
-#> 6  CREB1 A1CF -1.9202671
+#> 1    AHR A1CF -0.7996633
+#> 2     AR A1CF -0.5410527
+#> 3 ARID3A A1CF  2.9311514
+#> 4   ARNT A1CF  2.3026895
+#> 5  BRCA1 A1CF  2.8180388
+#> 6  CREB1 A1CF -1.0686323
 ```
 
 2.  CRANE integration with ALPACA
@@ -117,20 +123,20 @@ alpListObject=alpaca.crane(input, alp, isParallel = T)
 # TF Results
 head(alpListObject$TF)
 #>        Membership Differential Modularity Score       Pvalue t-statistic
-#> ARID3A          1                    0.11078839 2.354490e-42  -134.03163
-#> ARNT            1                    0.08121685 1.000000e+00   136.38618
-#> BRCA1           2                    0.06560763 1.000000e+00    25.99591
-#> ELF5            1                    0.03373797 1.000000e+00    82.42068
-#> ETS1            2                    0.05777723 3.955381e-31   -54.75762
-#> FEV             2                    0.05693467 1.000000e+00    83.51181
+#> ARID3A          1                    0.11078839 7.100957e-43  -139.69642
+#> ARNT            1                    0.08121685 1.000000e+00    98.68718
+#> BRCA1           2                    0.06560763 1.000000e+00    23.98381
+#> ELF5            1                    0.03373797 1.000000e+00    98.33036
+#> ETS1            2                    0.05777723 3.636443e-30   -50.68560
+#> FEV             2                    0.05693467 1.000000e+00    87.91174
 
 # Gene Results
 head(alpListObject$Gene)
 #>        Membership Differential Modularity Score       Pvalue t-statistic
-#> A1CF            4                  0.0014013382 9.999995e-01    6.175483
-#> A2M             1                  0.0007451022 1.127484e-05   -5.042341
-#> A4GALT          6                  0.0055156253 1.982201e-13  -12.413065
-#> A4GNT           2                  0.0003932609 1.974168e-03   -3.131707
-#> AAAS            1                  0.0003320119 1.000000e+00    9.451461
-#> AACS            9                  0.0027239872 1.545997e-02   -2.268509
+#> A1CF            4                  0.0014013382 9.999974e-01   5.5703422
+#> A2M             1                  0.0007451022 6.637922e-06  -5.2329474
+#> A4GALT          6                  0.0055156253 1.529687e-16 -16.4454533
+#> A4GNT           2                  0.0003932609 4.630008e-02  -1.7392323
+#> AAAS            1                  0.0003320119 1.000000e+00   9.1197478
+#> AACS            9                  0.0027239872 5.605418e-01   0.1536929
 ```
