@@ -2,24 +2,28 @@
 #'
 #' @param A Adjacency Matrix
 #' @param alpha alpha paramter perturbs each edge weights
+#' @param isSelfLoop TRUE/FALSE if self loop exists. co-expression matrix will have a self-loop of 1. Thus TRUE
 #'
 #' @return adjacency matrix
 #' @export
 #'
-crane.unipartite = function(A,alpha=0.1){
+crane.unipartite = function(A,alpha=0.1,isSelfLoop=F){
   print(paste("Applying Alpha =",alpha))
 
   rown=nrow(A)
   coln=ncol(A)
 
+  # randomize nodes
   ridx=sample(1:rown,rown,replace = F)
   A=A[ridx,ridx]
-
 
   rlt_A=array(0,dim=dim(A))
   colnames(rlt_A)=colnames(A)
   rownames(rlt_A)=rownames(A)
 
+  Aorig=A
+  oavg=mean(Aorig)
+  diag(Aorig)=mean(Aorig)
   A[lower.tri(A)]=0
 
   rowD=rowSums(A)
@@ -27,10 +31,9 @@ crane.unipartite = function(A,alpha=0.1){
   gD=colSums(A)
 
   omin=min(A)
+  oomin=min(A[A>0])
   omax=max(A)
-
   randn=rown-2
-
   if (alpha >0){
     rlt_A[1,]=A[1,]
     print("Constructing Iteratuvely Perturbed Network")
@@ -42,18 +45,18 @@ crane.unipartite = function(A,alpha=0.1){
       #Randomly add delta to previous the Rows by alpha
       temp=rlt_A[(i-1),]
       n=randn
-      avg=mean(temp)
-      std=sd(temp)
-      cur_min=min(temp)
-      cur_max=max(temp)
+      avg=mean(temp[(i+1):rown])
+      std=sd(Aorig[(i-1),])
+      cur_min=min(temp[(i+1):rown])
+      cur_max=max(temp[(i+1):rown])
       delta=rnorm(n,mean=0,sd=std)
       temp[(i+1):rown]=temp[(i+1):rown]+alpha*delta
+      temp[(i+1):rown][is.na(temp[(i+1):rown])]=oomin
       if (any(temp[(i+1):rown]<omin)){
-        temp[(i+1):rown]=temp[(i+1):rown]+abs(min(temp[(i+1):rown]))+omax*alpha
+        temp[(i+1):rown]=temp[(i+1):rown]+abs(min(temp[(i+1):rown]))
       }
       temp[(i+1):rown]=(temp[(i+1):rown]/sum(temp[(i+1):rown]))*(rowD[(i-1)]-sum(temp[1:i]))
       goal_degree=colSums(A[1:i,])
-
       k=0
       # Backtrack to Control min max
       while(1){
@@ -77,8 +80,9 @@ crane.unipartite = function(A,alpha=0.1){
         if (length(ridx)>0){
           temp[ridx]=temp[ridx]+abs(rcor)
         }
+        temp[(i+1):rown][is.na(temp[(i+1):rown])]=oomin
         if (any(temp[(i+1):rown]<omin)){
-          temp[(i+1):rown]=temp[(i+1):rown]+abs(min(temp[(i+1):rown]))+omax*alpha
+          temp[(i+1):rown]=temp[(i+1):rown]+abs(min(temp[(i+1):rown]))+omin
         }
         temp[(i+1):rown]=(temp[(i+1):rown]/sum(temp[(i+1):rown]))*(rowD[(i-1)]-sum(temp[1:i]))
         k=k+1
@@ -92,6 +96,11 @@ crane.unipartite = function(A,alpha=0.1){
     }
   }
 
+  if (isSelfLoop){
+    rlt_A[nrow(rlt_A),ncol(rlt_A)]=A[nrow(rlt_A),ncol(rlt_A)]
+  }
+
+  # Non-Iterative version of the algorithm (not recommended)
   if(!isTRUE(all.equal(rowSums(rlt_A),rowD,check.attributes = F, use.names = F))){
     print("ROW ERROR Alpha limit has been reached")
     return(NULL)
